@@ -1,16 +1,15 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const Message = require("../utils/message");
 
 const isEqualPass = (password, current) => bcrypt.compare(password, current);
 
 const logIn = async ({ email, password }) => {
   const user = await User.findOne({ email }).select("password").exec();
-  if (!user) return { code: 404, message: "User o Password incorrect", tk: "" };
+  if (!user) return Message.notFound("User o Password incorrect");
   return (await isEqualPass(password, user.password))
-    ? { code: 200, message: "", tk: user.JWT() }
-    : { code: 404, message: "User o Password incorrect", tk: "" };
+    ? Message.success(user.JWT())
+    : Message.notFound("User o Password incorrect");
 };
 
-const logOut = ({ token }) => {};
-
-module.exports = { logIn, logOut };
+module.exports = { logIn };
