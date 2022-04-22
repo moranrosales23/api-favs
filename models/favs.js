@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 
 const Favs = new mongoose.Schema({
-  name: { required: true, type: String, minLength: 2 },
+  name: {
+    required: [true, "The name of the list is required"],
+    type: String,
+    minLength: 2,
+  },
   favs: [
     {
       title: {
-        required: [true, "The title of the list is required"],
+        required: [true, "The title of the favorite is required"],
         type: String,
         minLength: 2,
       },

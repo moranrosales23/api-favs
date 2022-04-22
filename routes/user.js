@@ -4,7 +4,7 @@ const Auth = require("../middleware/auth");
 
 const api = express.Router();
 
-api.post("/", Auth, User.create);
+api.post("/", User.create);
 api.get("/", Auth, User.all);
 
 module.exports = api;
