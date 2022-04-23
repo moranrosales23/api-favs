@@ -17,7 +17,7 @@ let token = "";
 test("POST /api/user/", async () => {
   const data = {
     email: "moranrosales23@hotmail.com",
-    password: "123456",
+    password: "A123456s@",
   };
 
   await supertest(app)
