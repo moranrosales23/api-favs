@@ -2,6 +2,10 @@
 
 Favs is a new company that aims to provide a better way to organize your favorite things: music, clothes, courses, etc., all in one place.
 
+## Deploy
+
+https://favapi.herokuapp.com
+
 ## Installation
 
 Requires [Node.js](https://nodejs.org/) v14+ to run.
