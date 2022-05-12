@@ -23,7 +23,7 @@ const find = async (req, res) => {
     const { code, message, data } = await Favs.find(req.params.id, req.body);
     res.status(code).send({ message, data });
   } catch (error) {
-    res.status(400).send({ message: "Fav couldn't be created", error });
+    res.status(400).send({ message: "Fav couldn't be created ", error });
   }
 };
 
