@@ -1,8 +1,8 @@
 const Favs = require("../models/favs");
 const Message = require("../utils/message");
 
-const existsFavorite = ({ favs }, { name }) =>
-  favs.filter((fav) => fav.name === name).length > 0;
+const existsFavorite = ({ favs }, { title }) =>
+  favs.filter((fav) => fav.title === title).length > 0;
 
 const add = ({ name, favs, _user_id }) => Favs.create({ name, favs, _user_id });
 

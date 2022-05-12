@@ -163,3 +163,39 @@ test("Delete List of Favorites -> DELETE /api/favs/:id", async () => {
     .set("Authorization", `Bearer ${token}`)
     .expect(200);
 });
+
+test("Add item List of Favorites -> PATH /api/favs/:id", async () => {
+  const data = {
+    name: "Anselmo",
+    favs: [
+      {
+        title: "Anselmo x 3",
+        description: "descripcion del favorito 3",
+        link: "www.mi-favorito.com",
+      },
+    ],
+  };
+  const item = {
+    title: "otro",
+  };
+  let id = "";
+
+  await supertest(app)
+    .post("/api/favs/")
+    .set("Authorization", `Bearer ${token}`)
+    .send(data)
+    .expect(201)
+    .then(async (response) => {
+      expect(response.body.message).toEqual("Fav created");
+      expect(response.body.data._id).toBeDefined();
+      expect(response.body.data.name).toBe(data.name);
+      expect(response.body.data.favs.length).toBe(1);
+      id = response.body.data._id;
+    });
+
+  await supertest(app)
+    .patch("/api/favs/" + id)
+    .send(item)
+    .set("Authorization", `Bearer ${token}`)
+    .expect(200);
+});
